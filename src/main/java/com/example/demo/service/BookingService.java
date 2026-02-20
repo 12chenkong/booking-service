@@ -46,4 +46,14 @@ public class BookingService {
                 savedReservation.getSeatIds(),savedReservation.getAmount());
     }
 
+    public void handleBookingOnSeatReservationFailure(String bookingId){
+        var bookingDetail=bookingRepository.findByBookingCode(bookingId)
+                .orElseThrow(()->new RuntimeException("Booking not found for bookingId"+bookingId));
+
+        bookingDetail.setStatus("FAILED");
+        bookingRepository.save(bookingDetail);
+        log.info("Booking with id {} marked as FAILED due to seat reservation failure", bookingId);
+    }
+
+
 }

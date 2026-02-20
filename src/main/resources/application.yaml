@@ -3,13 +3,13 @@ spring:
     name: booking-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5168/bookingdb
+    url: jdbc:postgresql://localhost:5432/bookingdb
     username: itpusr
     password: itp@168
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -26,6 +26,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "*"
+      auto-offset-reset: earliest
 
 
 
